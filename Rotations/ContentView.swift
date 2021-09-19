@@ -8,9 +8,49 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var degress: Double = 0.0
+    
     var body: some View {
-        Text("Hello, world!")
+        VStack {
+            Image("smile")
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(16)
+                .rotationEffect(.degrees(degress))
+                .padding()
+            
+            Spacer()
+            
+            HStack {
+                Button(action: {
+                    withAnimation {
+                        degress -= 10
+                    }
+                }, label: {
+                    Image(systemName: "arrow.counterclockwise")
+                })
+                Spacer()
+                Button(action: {
+                    withAnimation {
+                        degress = 0
+                    }
+                }, label: {
+                    Image(systemName: "0.circle")
+                })
+                Spacer()
+                Button(action: {
+                    withAnimation {
+                        degress += 10
+                    }
+                }, label: {
+                    Image(systemName: "arrow.clockwise")
+                })
+            }
+            .font(.largeTitle)
+            .foregroundColor(.green)
             .padding()
+        }
     }
 }
 
